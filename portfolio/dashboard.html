@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | Sonali Shukla</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header class="site-header">
+
+        <nav
+            class="navbar container"
+            aria-label="Admin navigation"
+        >
+
+            <a
+                class="brand"
+                href="index.html"
+            >
+                Sonali<span> Shukla</span>
+            </a>
+
+
+            <div class="dashboard-nav">
+
+                <a
+                    href="index.html"
+                    class="dashboard-nav-link"
+                >
+                    View Portfolio
+                </a>
+
+
+                <button
+                    id="logoutBtn"
+                    class="dashboard-logout"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main class="admin-dashboard">
+
+        <div class="container">
+
+
+            <!-- ============================
+                 DASHBOARD INTRO
+            ============================= -->
+
+            <section class="dashboard-intro">
+
+                <p class="section-label">
+                    ADMIN DASHBOARD
+                </p>
+
+                <h1>
+                    Manage Your Portfolio
+                </h1>
+
+                <p>
+                    Add, update and manage the projects
+                    displayed on your portfolio.
+                </p>
+
+            </section>
+
+
+
+            <!-- ============================
+                 ADD PROJECT
+            ============================= -->
+
+            <section class="admin-panel">
+
+                <div class="admin-panel-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            PROJECT MANAGEMENT
+                        </p>
+
+                        <h2 id="projectFormHeading">
+                            Add New Project
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="projectForm"
+                    class="project-form"
+                >
+
+                    <!-- Hidden project ID for edit -->
+
+                    <input
+                        type="hidden"
+                        id="projectId"
+                    >
+
+
+                    <!-- Title -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectTitle">
+                            Project Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="projectTitle"
+                            placeholder="e.g. AIRGUARD"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Description -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="projectDescription"
+                            rows="5"
+                            placeholder="Describe your project..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- Category -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectCategory">
+                            Category
+                        </label>
+
+                        <input
+                            type="text"
+                            id="projectCategory"
+                            placeholder="e.g. AI & Web Development"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Technologies -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectTechnologies">
+                            Technologies
+                        </label>
+
+                        <input
+                            type="text"
+                            id="projectTechnologies"
+                            placeholder="HTML5, CSS3, JavaScript, AI"
+                        >
+
+                        <small>
+                            Separate technologies with commas.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- GitHub URL -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectGithub">
+                            GitHub URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="projectGithub"
+                            placeholder="https://github.com/..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- Live URL -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectLive">
+                            Live Demo URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="projectLive"
+                            placeholder="https://..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- Image -->
+
+                    <div class="admin-form-field">
+
+                        <label for="projectImage">
+                            Project Image URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="projectImage"
+                            placeholder="https://..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- Featured -->
+
+                    <div class="admin-checkbox-field">
+
+                        <input
+                            type="checkbox"
+                            id="projectFeatured"
+                        >
+
+                        <label for="projectFeatured">
+                            Featured Project
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- Buttons -->
+
+                    <div class="project-form-actions">
+
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                            id="projectSubmitBtn"
+                        >
+                            Add Project
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="cancelEditBtn"
+                            style="display: none;"
+                        >
+                            Cancel Edit
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="projectMessage"
+                        class="dashboard-message"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ============================
+                 PROJECT LIST
+            ============================= -->
+
+            <section class="admin-panel">
+
+                <div class="admin-panel-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            YOUR CONTENT
+                        </p>
+
+                        <h2>
+                            Portfolio Projects
+                        </h2>
+
+                    </div>
+
+                    <span
+                        id="projectCount"
+                        class="project-count"
+                    >
+                        0 Projects
+                    </span>
+
+                </div>
+
+
+                <div id="dashboardMessage">
+
+                    Loading projects...
+
+                </div>
+
+
+                <div
+                    id="adminProjectList"
+                    class="admin-project-list"
+                ></div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script src="dashboard.js"></script>
+
+
+</body>
+
+</html>

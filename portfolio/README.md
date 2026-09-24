@@ -36,7 +36,13 @@ portfolio/
 
 ## Run locally
 
-Open the `portfolio` folder in VS Code, right-click `index.html`, and choose **Open with Live Server**. Alternatively, open `index.html` directly in a browser.
+From this directory, run:
+
+```bash
+npm run dev
+```
+
+This starts a local static development server and opens the portfolio in your browser. You can also open the `portfolio` folder in VS Code, right-click `index.html`, and choose **Open with Live Server**, or open `index.html` directly in a browser.
 
 ## Replace personal information
 
