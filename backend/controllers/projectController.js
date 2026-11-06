@@ -1,4 +1,9 @@
-const Project = require("../models/Project");
+const mongoose = require("mongoose");
+const Project = require("../models/project");
+
+const isValidProjectId = (id) => mongoose.isValidObjectId(id);
+const getErrorStatus = (error) =>
+    error.name === "ValidationError" || error.name === "CastError" ? 400 : 500;
 
 
 // ==================== CREATE PROJECT ====================
@@ -56,7 +61,7 @@ const createProject = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             message: "Failed to create project",
 
@@ -93,7 +98,7 @@ const getProjects = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             message: "Failed to fetch projects",
 
@@ -112,6 +117,16 @@ const getProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
 
     try {
+
+        if (!isValidProjectId(req.params.id)) {
+
+            return res.status(400).json({
+
+                message: "Invalid project ID"
+
+            });
+
+        }
 
         const project = await Project.findById(
             req.params.id
@@ -134,7 +149,7 @@ const getProjectById = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             message: "Failed to fetch project",
 
@@ -153,6 +168,16 @@ const getProjectById = async (req, res) => {
 const updateProject = async (req, res) => {
 
     try {
+
+        if (!isValidProjectId(req.params.id)) {
+
+            return res.status(400).json({
+
+                message: "Invalid project ID"
+
+            });
+
+        }
 
         const project = await Project.findOne({
 
@@ -241,7 +266,7 @@ const updateProject = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             message: "Failed to update project",
 
@@ -260,6 +285,16 @@ const updateProject = async (req, res) => {
 const deleteProject = async (req, res) => {
 
     try {
+
+        if (!isValidProjectId(req.params.id)) {
+
+            return res.status(400).json({
+
+                message: "Invalid project ID"
+
+            });
+
+        }
 
         const project = await Project.findOne({
 
@@ -293,7 +328,7 @@ const deleteProject = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
+        res.status(getErrorStatus(error)).json({
 
             message: "Failed to delete project",
 
